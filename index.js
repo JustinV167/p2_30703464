@@ -4,7 +4,7 @@ const app=express()
 const PORT=process.env.PORT ||3000 
 app.use(express.static(__dirname+"/public"))
 app.set("view engine","ejs")
-app.set("views", __dirname +"/Views")
+app.set("views", __dirname +"/views")
 
 //estableciendo las rutas de la pagina
 app.use("/", require("./router/index"))
