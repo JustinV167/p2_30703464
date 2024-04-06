@@ -1,0 +1,77 @@
+body{
+    background-color: #E3FEF7;
+}
+.viewCenter{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.basicContainer{
+    border:solid 2px #77B0AA;
+    border-radius: 10px; 
+    padding: 20px;
+    background-color: #C4E4FF;
+    display: grid;
+}
+.sizingContainer{
+    min-width: 280px;
+    max-width: 1200px;
+    min-height: 200px;
+}
+.centerContainer{
+    place-self: center;
+}
+.triangle {
+    
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+ .triangleFather{
+    width: 200px;
+    height: 150px;
+    background-color: yellow;
+    display: grid;
+    
+    
+}
+ .triangleChild{
+    width: 160px;
+    height: 120px;
+    background-color: white;
+    place-self: center;
+    margin-top: 4%;
+    display: grid;
+
+
+} 
+.alertSign{
+   background-color: black;
+   width: 20px;
+   height: 60px; 
+   margin: 25px auto auto auto;
+   border-radius: 5px 5px 10px 10px;
+   animation:jump 2s infinite;
+}
+.alertCircle{
+    background-color: black;
+    width: 20px;
+    height: 20px; 
+    margin: 0 auto;
+    border-radius: 50%;
+ }
+ @keyframes jump {
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        
+        transform: translateY(-10px);
+        
+    }
+    100%{
+        transform: translateY(0px);
+    }
+ }
+ .textCenter{
+    text-align: center;
+ }

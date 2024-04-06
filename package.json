@@ -1,0 +1,17 @@
+{
+  "name": "p2_30703464",
+  "version": "1.0.0",
+  "description": "web app for programmin 2 section 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "author": "Justin Vegas 30703464",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0"
+  }
+}
