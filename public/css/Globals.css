@@ -128,7 +128,7 @@ body{
 p,h4,h3{
     margin: 4px;
 }
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .lineVertical{
         display: none;
     }
