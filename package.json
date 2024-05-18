@@ -10,8 +10,10 @@
   "author": "Justin Vegas 30703464",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "sqlite3": "^5.1.7"
   }
 }

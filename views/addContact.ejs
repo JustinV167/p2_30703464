@@ -1,0 +1,26 @@
+<%- include("template/base_open.ejs",{title:"Curriculum"})%>
+
+<div class="allview flexColumn">
+    <%- include("template/nav_bar.ejs",{onlyRute:'/contact'})%>
+    <form method="post" action="/contacts/addContact" class="form centerContainer my-2 ">
+        <p class="title">Registro de Contactos </p>
+
+        <label class="mt-2">
+            <input class="input" type="text" placeholder="" required="" name="name">
+            <span>Nombre</span>
+        </label> 
+        <label >
+            <input class="input" type="email" placeholder="" required="" name="email">
+            <span>Email</span>
+        </label> 
+        <label class="mb-2">
+            <textarea class="input commentArea" type="text" placeholder=""  name="comment"></textarea>
+            <span>Comentario</span>
+        </label> 
+            
+        
+
+        <input type="submit" value="Enviar" class="submit">
+    </form>
+</div>
+<%- include("template/base_close.ejs")%>

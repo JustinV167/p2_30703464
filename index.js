@@ -1,6 +1,8 @@
 //importando express
 const express= require("express")
 const app=express()
+require('dotenv').config();
+app.use(express.urlencoded({ extended: true }));
 //estableciendo puerto, por env y si no existe, que se ejecute en el 3000
 const PORT=process.env.PORT ||3000 
 //estableciendo carpeta publica
@@ -12,6 +14,8 @@ app.set("views", __dirname +"/views")
 
 //estableciendo las rutas de la pagina
 app.use("/", require("./router/index"))
+app.use("/contacts", require("./router/contacts"))
+app.use("/curriculum", require("./router/curriculum"))
 //por si hay error
 app.use((req,res)=>{
 	res.status(404).render("error_404.ejs")

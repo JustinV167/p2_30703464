@@ -1,0 +1,28 @@
+#nav_bar{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 12vh;
+    background-color: #141E46;
+    position: fixed;
+    z-index: 20;
+}
+#nav_template{
+    width: 100%;
+    height: 12vh;
+}
+#nav_title{
+    margin-left: 2%;
+    font-size: 1.5rem;
+    color: #FEFDED;
+}
+#nav_menu{
+    margin-left: auto;
+    margin-right: 2%;
+    font-size: 1rem;
+    display: flex;
+    gap: 15px;
+}
+.nav_menu_items{
+    color: white;
+}

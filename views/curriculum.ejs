@@ -1,0 +1,63 @@
+<!-- vista principal, importando base de html-->
+<%- include("template/base_open.ejs",{title:"Curriculum"})%>
+
+<div class="allview flexColumn">
+    <%- include("template/nav_bar.ejs",{onlyRute:'/curriculum'})%>
+    <button class="buttonlatel disabled">+</button>
+    <div class="fullcontainer flex flex-1" >
+        <div class="width-tercio fullheight latelmenu text-white">
+            <img class="circle width-10 height-10 my-2" src="/image.jpg" >
+            <p class="text-25">Justin Javier</p>
+            <p class="text-25">Vegas Linero</p>
+            <div class="width-4-5">
+                <div>
+                    <h4>Cedula</h4>
+                    <p class="ml-10px">30.703.464</p>
+                </div>
+                <div>
+                    <h4>Correo</h4>
+                    <p class="ml-10px break-word">Justinvegas14@gmail.com</p>
+                </div>
+                <div>
+                    <h4>Direccion</h4>
+                    <p class="ml-10px">San Juan de los Morros, Valle Verde, calle San Miguel</p>
+                </div>
+                <div>
+                    <h4>Fecha de Nacimiento</h4>
+                    <p class="ml-10px">10 de marzo del 2005</p>
+                </div>
+            </div>
+            
+         </div>
+         <div class="fullcontainer">
+            <div class="padding-1">
+                <div>
+                    <h3>Experencia Laboral</h3>
+                    <p class="ml-10px">-Sin Experencia Laboral</p>
+                </div>
+                <div>
+                    <h3>Educacion</h3>
+                    <div class="ml-10px">
+
+                        <h4>Educacion Primaria</h4>
+                        <p class="ml-10px">E.U. 'Josefa Molina de Duque'. - 2017 </p>
+                        <h4>Educacion Media</h4>
+                        <p class="ml-10px">L.N. 'Juan Germán Roscio'. - 2022 </p>
+                        <h4>Educacion Universitaria</h4>
+                        <p class="ml-10px">U.N.E. "Romulo Gallegos". - Estudiando </p>
+                    </div>
+                </div>
+                <div>
+                    <h3>Cursos</h3>
+                    <p class="ml-10px">Curso basico de JavaScript en Sololearn -2022</p>
+                </div>
+            </div>
+           
+            
+
+         </div>
+    </div> 
+
+</div>
+<script src="/js/latelmenu.js"></script>
+<%- include("template/base_close.ejs")%>

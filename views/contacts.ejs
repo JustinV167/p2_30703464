@@ -1,0 +1,50 @@
+<%- include("template/base_open.ejs",{title:"Inicio"})%>
+<div class="allview flexColumn">
+        <%- include("template/nav_bar.ejs",{onlyRute:'/contacts'})%>
+
+        <div class="expandDiv centerContainer my-2" >
+                <p class="expandTitle">Lista de Contactos </p>
+
+		<div class="separatingColumn">
+			
+			<p class="titleItem anyItem">Nombre</p>
+			<p class="titleItem anyItem">E-mail</p>
+			<p class="titleItem anyItem">Comentario</p>
+			
+		</div>
+        <div class="containerList">
+	<% if (userData.length>0) { %>
+		<% userData.forEach(user => { %>
+                                <div class="separatingColumn">
+
+                                        <div onclick="expand(this)"  class="text anyItem"><%= user.name%></div>
+                                        <div onclick="expand(this)"   class="text  anyItem"><%= user.email%></div>
+                                        <div onclick="expand(this)"   class="text anyItem"><%= user.comment%></div>
+                                </div>
+				
+
+	
+		<% }) %>
+
+	<% } %>
+        
+</div>
+<a href="/contacts/addContact" class="mx-auto">
+        <button class="submit mt-10px ">
+                agregar contacto
+        </button>
+</a>
+        </div>
+        
+</div>
+
+<div class="templateContainer  centerContainer">
+        <div class="my-2 expandDiv" onclick="event.stopPropagation()">
+                <p class="expandTitle">Texto Expandido </p>
+                <div class="expandContent">
+                        <p class="expandText"></p>
+                </div>
+        </div>
+</div>
+    <script src="js/expand.js"></script>
+<%- include("template/base_close.ejs")%>
