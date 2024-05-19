@@ -3,8 +3,9 @@ const { promisify } = require("util");
 const path = require('path');
 class ContactsModel {
   constructor() {
-
-    this.db = new sqlite3.Database(process.env.DB_CONTACTS, (err) => {
+    const dbPath = path.join(__dirname,'../', process.env.DB_CONTACTS);
+    console.log(dbPath);
+    this.db = new sqlite3.Database(dbPath, (err) => {
       if (err) {
         console.error(err.message);
         return
