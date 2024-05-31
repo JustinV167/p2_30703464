@@ -3,6 +3,8 @@ const express= require("express")
 const app=express()
 require('dotenv').config();
 app.use(express.urlencoded({ extended: true }));
+app.set("trust proxy", true);
+
 //estableciendo puerto, por env y si no existe, que se ejecute en el 3000
 const PORT=process.env.PORT ||3000 
 //estableciendo carpeta publica

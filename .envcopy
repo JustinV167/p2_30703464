@@ -1,0 +1,2 @@
+DB_CONTACTS='/database/database.db'
+CONTACT_TABLE='contacts' 

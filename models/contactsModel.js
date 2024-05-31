@@ -13,13 +13,20 @@ class ContactsModel {
       console.log("Conectado a la base de datos SQLite.");
     });
 
-    
+    this.db.run(
+      `CREATE TABLE IF NOT EXISTS ${process.env.CONTACT_TABLE} (email TEXT NOT NULL, name TEXT NOT NULL, comment TEXT,pais TEXT NOT NULL, direction TEXT NOT NULL, date INTEGER NOT NULL, id INTEGER PRIMARY KEY AUTOINCREMENT)`,
+      (err) => {
+        if (err) {
+          console.error(err.message);
+        }
+      }
+    );
   }
 
-  async insertContact({email, name, comment, direction, date}) {
+  async insertContact({email, name, comment, direction, date,pais}) {
     return new Promise((resolve, reject) => {
-      const sql = `INSERT INTO ${process.env.CONTACT_TABLE} (email, name, comment, direction, date) VALUES (?, ?, ?, ?, ?)`;
-      this.db.run(sql, [email, name, comment, direction, date], function (err) {
+      const sql = `INSERT INTO ${process.env.CONTACT_TABLE} (email, name, comment, direction, date,pais) VALUES (?, ?, ?, ?, ?, ?)`;
+      this.db.run(sql, [email, name, comment, direction, date,pais], function (err) {
         if (err) {
           console.error(err.message);
           reject(err);
