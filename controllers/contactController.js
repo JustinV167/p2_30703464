@@ -12,7 +12,7 @@ class contactsController {
       this.emailController=new emailController('Notificador de registro')
     }
     async add(req, res) {
-      let recaptchaResponse=req?.body?.g-recaptcha-response
+      let recaptchaResponse=req?.body?.['g-recaptcha-response']
       if (!recaptchaResponse) {
         return res.status(400).send("Debe completar el reCAPTCHA");
       }
