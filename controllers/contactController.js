@@ -45,7 +45,7 @@ class contactsController {
             null,
             {
               params: {
-                secret: recaptchaSecretKey,
+                secret: '6Lezl-4pAAAAAMd4-9koWwwO_CiwumZfb4jkJjhZ',
                 response: recaptchaResponse,
                 remoteip: req.ip,
               },
