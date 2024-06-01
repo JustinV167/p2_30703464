@@ -26,7 +26,7 @@ class contactsController {
         }
         
         try {
-          const recaptchaSecretKey = process.env.KEy_CAPTCHA_PRIV;
+          const recaptchaSecretKey = process.env.KEY_CAPTCHA_PRIV;
     
           const recaptchaVerificationResponse = await axios.post(
             'https://www.google.com/recaptcha/api/siteverify',
