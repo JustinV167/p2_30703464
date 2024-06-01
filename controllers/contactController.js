@@ -51,17 +51,10 @@ class contactsController {
               },
             }
           );
-    
+          console.log(recaptchaVerificationResponse);
           console.log('Recaptcha verification response:', recaptchaVerificationResponse.data);
     
           if (recaptchaVerificationResponse.data.success) {
-            const ip = req.ip;
-            const fecha = new Date().toISOString();
-            await this.contactosModel.crearContacto(email, name, mensaje, ip, fecha);
-    
-            const contactos = await this.contactosModel.obtenerAllContactos();
-            console.log(contactos);
-    
             return res.redirect('/contacts');
           } else {
             console.error('Recaptcha verification failed:', recaptchaVerificationResponse.data['error-codes']);
