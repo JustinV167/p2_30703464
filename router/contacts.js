@@ -11,7 +11,7 @@ router.get("/",async(req,res)=>{
 router.post("/addContact",newContactsCtrl.add)
 router.get("/addContact",(req,res)=>{
 	
-	res.render("addContact.ejs")
+	res.render("addContact.ejs",{captchaKey:process.env.KEY_CHAPTCHA_PUBLIC})
 	
 })
 

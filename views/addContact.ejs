@@ -1,8 +1,11 @@
-<%- include("template/base_open.ejs",{title:"Agregar Contacto"})%>
-
+<%- include("template/base_not_Close.ejs",{title:"Agregar Contacto"})%>
+<script src="https://www.google.com/recaptcha/api.js?render=6Lezl-4pAAAAAM_XVQarMaaLKsGnmq43MVsMLTS1">
+</script>
+</head>
+<body>	
 <div class="allview flexColumn">
     <%- include("template/nav_bar.ejs",{onlyRute:'/contact'})%>
-    <form method="post" action="/contacts/addContact" class="form centerContainer my-2 ">
+    <form method="post" action="/contacts/addContact" id="form-contact" class="form centerContainer my-2 ">
         <p class="title">Registro de Contactos </p>
 
         <label class="mt-2">
@@ -23,4 +26,12 @@
         <input type="submit" value="Enviar" class="submit">
     </form>
 </div>
+<script>
+    grecaptcha.ready(function() {
+      grecaptcha.execute('6Lezl-4pAAAAAM_XVQarMaaLKsGnmq43MVsMLTS1', {action: 'contacto'}).then(function(token) {
+        document.getElementById('form-contact').insertAdjacentHTML('beforeend',
+          '<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+      });
+    });
+  </script>
 <%- include("template/base_close.ejs")%>

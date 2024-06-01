@@ -3,6 +3,7 @@ const countries = require('i18n-iso-countries');
 countries.registerLocale(require("i18n-iso-countries/langs/es.json"));
 const contactsModel = require("../models/contactsModel");
 const emailController=require("../controllers/emailController")
+const axios = require('axios');
 
 class contactsController {
     constructor() {
@@ -11,6 +12,9 @@ class contactsController {
       this.emailController=new emailController('Notificador de registro')
     }
     async add(req, res) {
+      if (!req.body.recaptchaResponse) {
+        return res.status(400).send("Debe completar el reCAPTCHA");
+      }
       const geo = geoip.lookup(req.ip)?.country??'VE';
         const defaultContact={
                 comment:'',
@@ -31,8 +35,44 @@ class contactsController {
             'ingreso pero no dejo ningun Comentario'
           }\na las ${onlyDate.toLocaleTimeString()} del ${onlyDate.toLocaleDateString()} `
         })
-        res.redirect('/contacts')
-    }
+
+        try {
+          const recaptchaSecretKey = process.env.KET_CAPTCHA_PRIV;
+    
+          const recaptchaVerificationResponse = await axios.post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            null,
+            {
+              params: {
+                secret: recaptchaSecretKey,
+                response: req.body.recaptchaResponse,
+                remoteip: req.ip,
+              },
+            }
+          );
+    
+          console.log('Recaptcha verification response:', recaptchaVerificationResponse.data);
+    
+          if (recaptchaVerificationResponse.data.success) {
+            const ip = req.ip;
+            const fecha = new Date().toISOString();
+            await this.contactosModel.crearContacto(email, name, mensaje, ip, fecha);
+    
+            const contactos = await this.contactosModel.obtenerAllContactos();
+            console.log(contactos);
+    
+            return res.redirect('/contacts');
+          } else {
+            console.error('Recaptcha verification failed:', recaptchaVerificationResponse.data['error-codes']);
+            return res.status(400).send("Error en la verificación del reCAPTCHA");
+          }
+        } catch (error) {
+          console.error('Error al procesar el formulario de contacto:', error);
+          console.error('Error details:', error.response ? error.response.data : error);
+          return res.status(500).render('error', { mensaje: 'Error al procesar el formulario' });
+        }
+      }
+
     async readAll(){
       const data=await this.newContacts.AllContacts()
       return data
