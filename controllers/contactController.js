@@ -12,9 +12,9 @@ class contactsController {
       this.emailController=new emailController('Notificador de registro')
     }
     async add(req, res) {
-      if (!req.body.recaptchaResponse) {
-        console.log(req.body);
-        console.log(req.body.recaptchaResponse);
+      let recaptchaResponse=req?.body?.g-recaptcha-response
+      if (!recaptchaResponse) {
+        return res.status(400).send("Debe completar el reCAPTCHA");
       }
       const geo = geoip.lookup(req.ip)?.country??'VE';
         const defaultContact={
@@ -46,7 +46,7 @@ class contactsController {
             {
               params: {
                 secret: recaptchaSecretKey,
-                response: req.body.recaptchaResponse,
+                response: recaptchaResponse,
                 remoteip: req.ip,
               },
             }
