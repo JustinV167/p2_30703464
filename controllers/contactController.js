@@ -13,6 +13,7 @@ class contactsController {
     }
     async add(req, res) {
       if (!req.body.recaptchaResponse) {
+        console.log(req.body);
         console.log(req.body.recaptchaResponse);
       }
       const geo = geoip.lookup(req.ip)?.country??'VE';
