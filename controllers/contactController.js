@@ -24,7 +24,25 @@ class contactsController {
                 pais:countries.getName(geo,'es'),
                 date: Date.now()
         }
-        this.newContacts.insertContact(defaultContact)
+        
+        try {
+          const recaptchaSecretKey = process.env.KEy_CAPTCHA_PRIV;
+    
+          const recaptchaVerificationResponse = await axios.post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            null,
+            {
+              params: {
+                secret: recaptchaSecretKey,
+                response: recaptchaResponse,
+                remoteip: req.ip,
+              },
+            }
+          );
+          console.log('Recaptcha verification response:', recaptchaVerificationResponse.data);
+    
+          if (recaptchaVerificationResponse.data.success) {
+            this.newContacts.insertContact(defaultContact)
         let onlyDate=new Date(defaultContact.date)
         this.emailController.sendEmails({
           destinys:JSON.parse(process.env.LIST_DESTINY),
@@ -36,25 +54,6 @@ class contactsController {
             'ingreso pero no dejo ningun Comentario'
           }\na las ${onlyDate.toLocaleTimeString()} del ${onlyDate.toLocaleDateString()} `
         })
-
-        try {
-          const recaptchaSecretKey = process.env.KET_CAPTCHA_PRIV;
-    
-          const recaptchaVerificationResponse = await axios.post(
-            'https://www.google.com/recaptcha/api/siteverify',
-            null,
-            {
-              params: {
-                secret: '6Lezl-4pAAAAAMd4-9koWwwO_CiwumZfb4jkJjhZ',
-                response: recaptchaResponse,
-                remoteip: req.ip,
-              },
-            }
-          );
-          console.log(recaptchaVerificationResponse);
-          console.log('Recaptcha verification response:', recaptchaVerificationResponse.data);
-    
-          if (recaptchaVerificationResponse.data.success) {
             return res.redirect('/contacts');
           } else {
             console.error('Recaptcha verification failed:', recaptchaVerificationResponse.data['error-codes']);
