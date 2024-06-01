@@ -13,7 +13,7 @@ class contactsController {
     }
     async add(req, res) {
       if (!req.body.recaptchaResponse) {
-        return res.status(400).send("Debe completar el reCAPTCHA");
+        console.log(req.body.recaptchaResponse);
       }
       const geo = geoip.lookup(req.ip)?.country??'VE';
         const defaultContact={
