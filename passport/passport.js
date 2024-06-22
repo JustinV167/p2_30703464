@@ -35,7 +35,7 @@ module.exports = function (passport) {
   passport.use('google-login',new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRECT,
-    callbackURL: "http://localhost:3000/auth/google/contacts/contactos",
+    callbackURL: "p2-30703464.onrender.com/auth/google/contacts/contactos",
     passReqToCallback   : true
   },
   async function(request, accessToken, refreshToken, profile, done) {
