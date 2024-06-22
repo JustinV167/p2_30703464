@@ -1,23 +1,32 @@
 //importando express
 const express= require("express")
+const passport = require('passport');
 const app=express()
+const cookieParser=require("cookie-parser")
+const session = require('express-session');
 require('dotenv').config();
+const PORT=process.env.PORT ||3000 
+require('./passport/passport.js')(passport);                  
+
 app.use(express.urlencoded({ extended: true }));
 app.set("trust proxy", true);
-
-//estableciendo puerto, por env y si no existe, que se ejecute en el 3000
-const PORT=process.env.PORT ||3000 
-//estableciendo carpeta publica
 app.use(express.static(__dirname+"/public"))
-//estableciendo motor grafico
 app.set("view engine","ejs")
-//estableciendo carpeta de las vistas
 app.set("views", __dirname +"/views")
 
-//estableciendo las rutas de la pagina
+app.use(cookieParser("secret"))
+app.use(session({
+	secret: 'secret',
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/", require("./router/index"))
 app.use("/contacts", require("./router/contacts"))
 app.use("/curriculum", require("./router/curriculum"))
+app.use('/auth/google',require('./router/authGoogle.js'));
 //por si hay error
 app.use((req,res)=>{
 	res.status(404).render("error_404.ejs")

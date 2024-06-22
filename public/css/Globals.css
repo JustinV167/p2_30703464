@@ -389,3 +389,35 @@ h4{
     flex: 1;
     overflow: auto;
   }
+  .google-login-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #555;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.google-login-btn:hover {
+    background-color: #eeeeeed8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.google-login-btn:active {
+    background-color: #eeeeeed8;
+}
+
+.google-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: auto;
+}
+.google-text{
+  margin-right: auto;
+}

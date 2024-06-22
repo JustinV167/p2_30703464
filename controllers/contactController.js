@@ -54,7 +54,7 @@ class contactsController {
             'ingreso pero no dejo ningun Comentario'
           }\na las ${onlyDate.toLocaleTimeString()} del ${onlyDate.toLocaleDateString()} `
         })
-            return res.redirect('/contacts');
+            return res.redirect('/');
           } else {
             console.error('Recaptcha verification failed:', recaptchaVerificationResponse.data['error-codes']);
             return res.status(400).send("Error en la verificación del reCAPTCHA");

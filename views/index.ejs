@@ -1,7 +1,47 @@
-<%- include("template/base_open.ejs",{title:"Inicio"})%>
-<%- include("template/nav_bar.ejs",{onlyRute:'/'})%>
-<div>
-        por llenar
+<%- include("template/base_not_Close.ejs",{title:"Agregar Contacto"})%>
+<script src="https://www.google.com/recaptcha/api.js?render=6Lezl-4pAAAAAM_XVQarMaaLKsGnmq43MVsMLTS1">
+</script>
+</head>
+<body>	
+<div class="allview flexColumn">
+    <%- include("template/nav_bar.ejs",{onlyRute:'/'})%>
+	<% if (!isLogin) { %>
+    <form method="post" action="/" id="form-login" class="form centerContainer my-2 ">
+        <p class="title ml-10px">Login para Admins</p>
+
+        <label class="mt-2">
+            <input class="input" type="email" placeholder="" required="" name="email">
+            <span>Email</span>
+        </label> 
+        <label class="mb-2">
+            <input class="input" type="password" placeholder="" required="" name="password">
+            <span>Password</span>
+        </label> 
+        <input type="submit" value="Enviar" class="submit">
+        <a href="/auth/google">
+        <button class="google-login-btn " type="button">
+              <img src="/google-icon.svg" class="google-logo"></img>
+              <p class="google-text">
+                Sigin Up with Google
+              </p> 
+            </button>
+          </a>
+    </form>
+	<% }%>
+	<% if (isLogin) { %>
+    <div class="centerContainer my-2">
+      <h1>Bienvenido!!</h1>
+    </div>
+    <% }%>
+
 </div>
-    
+<script>
+    grecaptcha.ready(function() {
+      grecaptcha.execute('6Lezl-4pAAAAAM_XVQarMaaLKsGnmq43MVsMLTS1', {action: 'contacto'}).then(function(token) {
+        document.getElementById('form-login').insertAdjacentHTML('beforeend',
+          '<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+      });
+    });
+  </script>
 <%- include("template/base_close.ejs")%>
+

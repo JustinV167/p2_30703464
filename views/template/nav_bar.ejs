@@ -4,12 +4,15 @@
         <% let rutes=[
         {label:'Inicio',rute:'/'},
         {label:'Curriculum',rute:'/curriculum'},
-        {label:'Contactos',rute:'/contacts'}]
+        {label:'Contactos',rute:'/contacts/contactos'},
+        {label:'Agg Contacto',rute:'/contacts/addContact'}]
             rutes=rutes.map(function(elem) {
                 if(onlyRute==elem.rute){return}
             return ('<a class="nav_menu_items" href='+elem.rute+'>' + elem.label + '</a>');
         }) -%>
         <%- rutes.join("") %>
+        
+
     </div>
 </nav>
 <div id="nav_template">
